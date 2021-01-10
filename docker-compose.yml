@@ -1,0 +1,18 @@
+app:
+  image: seckun:app
+  command: sh -c 'sleep 3; bundle exec ruby app.rb -o0.0.0.0'
+  ports:
+    - 8080:4567
+  environment:
+    - POSTGRES_DB=seckun
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=XXXXXXXXXXXXXXXXXXXXXXX
+    - POSTGRES_HOST=db
+    - WAIT_HOSTS=db:5432
+  links:
+    - db
+db:
+  image: postgres:latest
+  environment:
+    - POSTGRES_PASSWORD=XXXXXXXXXXXXXXXXXXXXXXX
+    - POSTGRES_DB=seckun
